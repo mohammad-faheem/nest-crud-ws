@@ -29,4 +29,4 @@ Valid credentials for accessing token -
     username: maria,
     password: guess
 
-WS events for chat 'send_message' & 'receive_message'
+WS events for chat 'send_message' & 'join'

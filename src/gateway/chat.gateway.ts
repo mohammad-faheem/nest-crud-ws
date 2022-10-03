@@ -24,16 +24,13 @@ export class ChatGateway
   server: Server;
 
   @SubscribeMessage('send_message')
-  sendMessage(@MessageBody() data: string): string {
-    this.server.emit('receive_message', data);
-    console.log(`sent: ${data}`);
-    return data;
+  sendMessage(@MessageBody() data: string): void {
+    this.server.emit('send_message', data);
   }
 
-  @SubscribeMessage('receive_message')
-  receiveNewMessage(@MessageBody() data: string): string {
-    console.log(`received: ${data}`);
-    return data;
+  @SubscribeMessage('join')
+  receiveNewMessage(@MessageBody() data: string): void {
+    console.log(`joined: ${data}`);
   }
 
   afterInit(): void {
@@ -41,10 +38,12 @@ export class ChatGateway
   }
 
   async handleConnection(client: Socket) {
+    this.server.emit('join',  `A new member joined the chat with id: ${client.id}`);
     console.log(`WS client with id: ${client.id} connected.`);
   }
 
   handleDisconnect(client: Socket) {
+    this.server.emit('join', `A new member leaved the chat with id: ${client.id}`);
     console.log(`WS client with id: ${client.id} disconnected.`);
   }
 }
