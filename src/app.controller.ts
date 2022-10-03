@@ -26,10 +26,10 @@ export class AppController {
   }
 
   @UseGuards(LocalAuthGuard)
-  @Post('auth/login')
+  @Post('login')
   @ApiBody({ type: User })
   @ApiOkResponse({
-    description: `{success: true, message: 'Product updated successfully.' }`,
+    description: `access_token: token value`,
   })
   @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
   async login(@Request() req) {

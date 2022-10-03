@@ -19,7 +19,7 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-Goto url domain.com/api for accessing swagger documentation.
+Goto url domain.com/api-docs for accessing swagger documentation.
 
 Valid credentials for accessing token -
 
